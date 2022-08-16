@@ -35,13 +35,14 @@ class MarkovMachine {
 
     for (let i = 0; i < words.length; i++) {
       if (i < words.length - 1) {
-        markovChains.has(words[i]) ?
-          markovChains.get(words[i]).push(words[i+1]) :
-          markovChains.set(words[i], [words[i+1]]);
+        //set variables for current word and next word
+        markovChains.has(words[i])
+          ? markovChains.get(words[i]).push(words[i+1])
+          : markovChains.set(words[i], [words[i+1]]);
       } else {
-        markovChains.has(words[i]) ?
-          markovChains.get(words[i]).push(null) :
-          markovChains.set(words[i], [null]);
+        markovChains.has(words[i])
+          ? markovChains.get(words[i]).push(null)
+          : markovChains.set(words[i], [null]);
       }
     }
 
@@ -63,14 +64,10 @@ class MarkovMachine {
 
     //push a random word from value array
     let nextWord;
-
-    do {
-      console.log(this.chains.get(text[text.length - 1]));
+    while (nextWord !== null) {
       nextWord = getRandomItem(this.chains.get(text[text.length - 1]));
-      console.log(nextWord);
       text.push(nextWord);
     }
-    while (nextWord !== null);
 
     return text.join(" ");
   }
