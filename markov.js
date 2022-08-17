@@ -84,3 +84,5 @@ function getRandomItem(arr) {
 
   return item;
 }
+
+module.exports = { MarkovMachine };
